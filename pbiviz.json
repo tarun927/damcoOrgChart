@@ -1,0 +1,20 @@
+{
+  "visual": {
+    "name": "damcoOrgChart",
+    "displayName": "damcoOrgChart",
+    "guid": "damcoOrgChartBC9AA1AC56E8468AA3D896339DF88E60",
+    "visualClassName": "Visual",
+    "version": "1.0.0.0",
+    "description": "This is an organisation chart visual developer by damco",
+    "supportUrl": "https://portal.damcogroup.com/",
+    "gitHubUrl": "https://github.com/Damco-Low-Code"
+  },
+  "apiVersion": "5.3.0",
+  "author": { "name": "Chandra Sekhar Malla", "email": "chandras3@damcogroup.com" },
+  "assets": { "icon": "assets/icon.png" },
+  "style": "style/visual.less",
+  "capabilities": "capabilities.json",
+  "dependencies": null,
+  "stringResources": [],
+  "version": "1.0.0.0"
+}

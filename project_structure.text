@@ -1,0 +1,20 @@
+- .eslintignore
+- assets
+  - icon.png
+- capabilities.json
+- dist
+  - damcoOrgChartBC9AA1AC56E8468AA3D896339DF88E60.1.0.0.0.pbiviz
+  - package.json
+- package-lock.json
+- package.json
+- pbiviz.json
+- src
+  - OrgChart.tsx
+  - settings.ts
+  - visual.ts
+- style
+  - visual.less
+- tsconfig.json
+- tslint.json
+- webpack.statistics.dev.html
+- webpack.statistics.prod.html

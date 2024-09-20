@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "allowJs": false,
+        "jsx": "react",
+        "types": ["react", "react-dom", "node"],
+        "module": "commonjs",
+        "target": "es6",
+        "esModuleInterop": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "sourceMap": true,
+        "outDir": "./.tmp/build/",
+        "moduleResolution": "node",
+        "declaration": true,
+        "lib": [
+            "es2022",
+            "dom"
+        ]
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "bower_components", "jspm_packages", ".tmp", "obj", "out", "Dist"],
+    "files": [
+        "./src/visual.ts"
+    ]
+}

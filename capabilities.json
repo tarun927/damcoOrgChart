@@ -1,0 +1,115 @@
+{
+  "dataRoles": [
+    {
+      "name": "index",
+      "kind": "Grouping",
+      "displayName": "Index"
+    },
+    {
+      "name": "name",
+      "kind": "Grouping",
+      "displayName": "Name"
+    },
+    {
+      "name": "designation",
+      "kind": "Grouping",
+      "displayName": "Designation"
+    },
+    {
+      "name": "imageBase64",
+      "kind": "Grouping",
+      "displayName": "Image Base64"
+    },
+    {
+      "name": "managerIndex",
+      "kind": "Grouping",
+      "displayName": "Manager Index"
+    }
+  ],
+  "dataViewMappings": [
+    {
+      "table": {
+        "rows": {
+          "select": [
+            {
+              "for": {
+                "in": "index"
+              }
+            },
+            {
+              "for": {
+                "in": "name"
+              }
+            },
+            {
+              "for": {
+                "in": "designation"
+              }
+            },
+            {
+              "for": {
+                "in": "imageBase64"
+              }
+            },
+            {
+              "for": {
+                "in": "managerIndex"
+              }
+            }
+          ],
+          "dataReductionAlgorithm": {
+            "window": {}
+          }
+        }
+      }
+    }
+  ],
+  "objects": {
+    "dataPoint": {
+      "displayName": "Data colors",
+      "properties": {
+        "defaultColor": {
+          "displayName": "Default color",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "showAllDataPoints": {
+          "displayName": "Show all",
+          "type": {
+            "bool": true
+          }
+        },
+        "fill": {
+          "displayName": "Fill",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "fillRule": {
+          "displayName": "Color saturation",
+          "type": {
+            "fill": {}
+          }
+        },
+        "fontSize": {
+          "displayName": "Text Size",
+          "type": {
+            "formatting": {
+              "fontSize": true
+            }
+          }
+        }
+      }
+    }
+  },
+  "privileges": []
+}
