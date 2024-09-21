@@ -5,6 +5,10 @@ import EmployeeCard from "./EmployeeCard"; // Importing EmployeeCard component
 import { Employee } from "./types"; // Importing Employee from types.ts
 import "../style/visual.less";
 
+interface EmployeeNode extends Employee {
+  subordinates?: EmployeeNode[];
+}
+
 interface OrgChartProps {
   data: Employee[];
 }
@@ -17,7 +21,7 @@ const OrgChart: React.FC<OrgChartProps> = ({ data }) => {
   const [isDragging, setIsDragging] = React.useState(false);
   const [startX, setStartX] = React.useState(0);
   const [startY, setStartY] = React.useState(0);
-  const [visibleSubordinates, setVisibleSubordinates] = React.useState<{ [key: string]: boolean }>({});
+  const [visibleSubordinates, setVisibleSubordinates] = React.useState<{ [key: number]: boolean }>({});
 
   const orgChartRef = React.useRef<HTMLDivElement>(null);
 
@@ -67,37 +71,52 @@ const OrgChart: React.FC<OrgChartProps> = ({ data }) => {
     };
   }, [handleMouseMove, isDragging, startX, startY]);
 
-  // Processed employees and manager mapping
-  const { processedEmployees, employeesByManager } = useProcessedEmployees(data);
+  // Build the employee tree
+  const employeeTree = React.useMemo(() => buildEmployeeTree(data), [data]);
 
-  // Render employees
-  const renderEmployees = (
-    employees: Employee[],
-    employeesByManager: Record<string, Employee[]>
-  ) => (
-    <div className="level">
-      {employees.map(employee => (
-        <div className="employee-cell" key={employee.name}>
+  const toggleSubordinates = React.useCallback(
+    (employeeIndex: number) => {
+      setVisibleSubordinates(prevState => {
+        const currentValue = prevState[employeeIndex] !== undefined ? prevState[employeeIndex] : true;
+        const newValue = !currentValue;
+        const newState = {
+          ...prevState,
+          [employeeIndex]: newValue,
+        };
+        console.log("Updated visibleSubordinates:", newState);
+        return newState;
+      });
+    },
+    []
+  );
+
+  // Render the employee tree
+  const renderEmployeeNode = React.useCallback(
+    (employee: EmployeeNode): JSX.Element => {
+      const hasSubordinates =
+        employee.subordinates && employee.subordinates.length > 0;
+      const isVisible = visibleSubordinates[employee.index] !== false; // Default to true to show subordinates initially
+  
+      return (
+        <div className="employee-cell" key={employee.index}>
           <EmployeeCard
             employee={employee}
-            toggleSubordinates={() => {
-              setVisibleSubordinates(prevState => ({
-                ...prevState,
-                [employee.name]: !prevState[employee.name],
-              }));
-            }}
+            toggleSubordinates={() => toggleSubordinates(employee.index)}
           />
-          {employeesByManager[employee.name] && (
+          {hasSubordinates && (
             <div
               className="subordinates"
-              style={{ display: visibleSubordinates[employee.name] ? "flex" : "none" }}
+              style={{ display: isVisible ? "flex" : "none" }}
             >
-              {renderEmployees(employeesByManager[employee.name], employeesByManager)}
+              {employee.subordinates!.map(subordinate =>
+                renderEmployeeNode(subordinate)
+              )}
             </div>
           )}
         </div>
-      ))}
-    </div>
+      );
+    },
+    [visibleSubordinates, toggleSubordinates]
   );
 
   return (
@@ -111,10 +130,9 @@ const OrgChart: React.FC<OrgChartProps> = ({ data }) => {
           cursor: isDragging ? "grabbing" : "grab",
         }}
       >
-        {renderEmployees(
-          processedEmployees.filter(emp => !emp.manager),
-          employeesByManager
-        )}
+        <div className="org-chart-container">
+          {employeeTree.map(employee => renderEmployeeNode(employee))}
+        </div>
       </div>
       <div className="zoom-control-container">
         <button
@@ -136,45 +154,32 @@ const OrgChart: React.FC<OrgChartProps> = ({ data }) => {
 
 export default OrgChart;
 
-// Custom hook to process employees
-function useProcessedEmployees(data: Employee[]) {
-  const [processedEmployees, setProcessedEmployees] = React.useState<Employee[]>([]);
-  const [employeesByManager, setEmployeesByManager] = React.useState<Record<string, Employee[]>>({});
+// Helper function to build the employee tree
+function buildEmployeeTree(employees: Employee[]): EmployeeNode[] {
+  const employeesMap = new Map<number, EmployeeNode>();
 
-  React.useEffect(() => {
-    // Deep copy to avoid mutating props
-    const dataCopy = data.map(emp => ({ ...emp }));
+  // Initialize the map
+  employees.forEach(emp => {
+    employeesMap.set(emp.index, { ...emp, subordinates: [] });
+  });
 
-    // Create a mapping of employees by manager
-    const managerMap: Record<string, Employee[]> = {};
+  const rootEmployees: EmployeeNode[] = [];
 
-    dataCopy.forEach(employee => {
-      if (employee.manager) {
-        if (!managerMap[employee.manager]) {
-          managerMap[employee.manager] = [];
-        }
-        managerMap[employee.manager].push(employee);
+  employees.forEach(emp => {
+    const employeeNode = employeesMap.get(emp.index)!;
+    if (emp.managerIndex !== undefined && emp.managerIndex !== null) {
+      const managerNode = employeesMap.get(emp.managerIndex);
+      if (managerNode) {
+        managerNode.subordinates!.push(employeeNode);
+      } else {
+        // Manager not found, treat as root
+        console.warn(`Manager with index ${emp.managerIndex} not found for employee${emp.index}`);
+        rootEmployees.push(employeeNode);
       }
-    });
-
-    // Find top-level managers
-    const topManagers = dataCopy.filter(emp => !emp.manager);
-
-    // Set levels recursively
-    const setLevels = (employees: Employee[], currentLevel: number) => {
-      employees.forEach(employee => {
-        employee.level = currentLevel;
-        if (managerMap[employee.name]) {
-          setLevels(managerMap[employee.name], currentLevel + 1);
-        }
-      });
-    };
-
-    setLevels(topManagers, 0);
-
-    setProcessedEmployees(dataCopy);
-    setEmployeesByManager(managerMap);
-  }, [data]);
-
-  return { processedEmployees, employeesByManager };
+    } else {
+      // No manager, treat as root
+      rootEmployees.push(employeeNode);
+    }
+  });
+  return rootEmployees;
 }

@@ -1,0 +1,144 @@
+.orgChart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: visible;
+  height: 100%;
+  width: 100%;
+  transform-origin: top center;
+  cursor: grab;
+}
+.org-chart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.level {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+.subordinates {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.employee-card.vacant {
+  background-color: #f0f0f0;
+  border: 2px dashed #ccc;
+}
+.vacant-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+.vacant-text {
+  font-weight: bold;
+  color: #888;
+}
+.employee-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 10px;
+}
+.employee-cell .employee-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  transition: box-shadow 0.3s, background 0.3s;
+  min-width: 160px;
+  max-width: 210px;
+  height: 200px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin: 5px;
+}
+.employee-cell .employee-card:hover {
+  box-shadow: 0 0 0 1px #888, 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+.employee-cell .subordinates {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+}
+.employee-card.level-0 {
+  border: 2px solid #FF5733;
+  /* ... other styles ... */
+}
+.employee-card.level-1 {
+  border: 2px solid #33FF57;
+  /* ... other styles ... */
+}
+.employee-card.level-2 {
+  border: 2px solid #3357FF;
+  /* Color for Subordinates of Level 1 */
+}
+.employee-card.level-3 {
+  border: 2px solid #FF33A1;
+  /* Color for Subordinates of Level 2 */
+}
+.employee-card img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+/* General button styling */
+.zoom-control-container {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  background-color: rgba(255, 255, 255, 0.7);
+  /* semi-transparent white */
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.zoom-control-btn {
+  border: none;
+  background-color: #f3f3f3;
+  color: #333;
+  padding: 6px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 50%;
+  /* Making the buttons circular */
+  width: 36px;
+  height: 36px;
+  line-height: 24px;
+  /* Centering the '+' '-' and 'fit' text vertically */
+}
+/* Hover state styling */
+.zoom-control-btn:hover {
+  background-color: #ddd;
+  /* A lighter shade on hover */
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  /* Subtle shadow on hover */
+}
+/* Specific button stylings */
+.zoom-in-btn {
+  background-color: #00A600;
+  /* Green for zoom in */
+}
+.zoom-out-btn {
+  background-color: #E81123;
+  /* Red for zoom out */
+}
+.zoom-fit-btn {
+  background-color: #F2C811;
+  /* Yellow for fit */
+  align-content: center;
+}
+

@@ -1,5 +1,3 @@
-// types.ts
-
 export interface Employee {
     index: number;
     name: string;
@@ -7,4 +5,4 @@ export interface Employee {
     imageBase64: string;
     managerIndex?: number;
     level?: number;
-  }
+}

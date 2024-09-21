@@ -10,6 +10,7 @@ import * as React from "react";
 import { createRoot, Root } from "react-dom/client"; // Updated import
 import OrgChart from "./OrgChart";
 import { Employee } from "./types"; // Correct import
+import ErrorBoundary from "./ErrorBoundary";
 
 export class Visual implements IVisual {
   private target: HTMLElement;
@@ -37,9 +38,9 @@ export class Visual implements IVisual {
     const nameIndex = columns.findIndex(col => col.roles["name"]);
     const designationIndex = columns.findIndex(col => col.roles["designation"]);
     const imageIndex = columns.findIndex(col => col.roles["imageBase64"]);
-    const managerIndex = columns.findIndex(col => col.roles["managerIndex"]);
+    const managerIndexIndex = columns.findIndex(col => col.roles["managerIndex"]);
 
-    if (nameIndex === -1 || designationIndex === -1 || imageIndex === -1) {
+    if (indexIndex === -1 || nameIndex === -1 || designationIndex === -1 || imageIndex === -1) {
       console.error("Required columns (name, designation, imageBase64) are missing.");
       return;
     }
@@ -55,27 +56,35 @@ export class Visual implements IVisual {
     });
 
     const data: Employee[] = table.rows.map(row => {
-      const indexValue = indexIndex !== -1 ? (row[indexIndex] as number) : undefined;
+      const indexValueRaw = indexIndex !== -1 ? row[indexIndex] : undefined;
+      const indexValue = parseInt(indexValueRaw as string);
       const nameValue = row[nameIndex] as string;
       const designationValue = row[designationIndex] as string;
       const imageValue = row[imageIndex] as string;
-      const managerIndexValue = managerIndex !== -1 ? (row[managerIndex] as number) : undefined;
-      const managerName = managerIndexValue !== undefined ? indexToNameMap[managerIndexValue] : undefined;
+      const managerIndexValueRaw = managerIndexIndex !== -1 ? row[managerIndexIndex] : undefined;
+      const managerIndexValue = managerIndexValueRaw !== undefined ? parseInt(managerIndexValueRaw as string) : undefined;
 
+      
       return {
         index: indexValue,
-        name: nameValue,
+        name: nameValue, // This may be null
         designation: designationValue,
         imageBase64: imageValue,
-        manager: managerName,
+        managerIndex: managerIndexValue, // Correct property name
       };
-    });
+    }).filter(emp => emp.index !== undefined)
 
     // Log the data for debugging
     console.log("Employee Data:", data);
 
     // Render the OrgChart component using the new root.render method
-    this.root.render(React.createElement(OrgChart, { data: data }));
+    this.root.render(
+      React.createElement(
+        ErrorBoundary,
+        null,
+        React.createElement(OrgChart, { data: data })
+      )
+    );
   }
 
   public destroy(): void {
