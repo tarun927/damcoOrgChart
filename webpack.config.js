@@ -18,6 +18,10 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|jpeg|gif|svg)$/,
+        type: 'asseet/resource',
+        generator: {
+          filename: 'assets/[name][ext][query]'
+        },
         loader: "url-loader",
       },
     ],

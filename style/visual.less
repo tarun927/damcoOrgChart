@@ -1,4 +1,6 @@
+/* visual.less */
 
+/* Org Chart Container Styles */
 .orgChart {
     display: flex;
     flex-direction: column;
@@ -7,162 +9,204 @@
     height: 100%;
     width: 100%;
     transform-origin: top center;
-    cursor:grab;
-}
-.org-chart-container {
+    cursor: grab;
+  }
+  
+  .org-chart-container {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-.level {
+  
+  .level {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
     margin-bottom: 20px;
-}
-.subordinates {
+  }
+  
+  .subordinates {
     display: flex;
     flex-direction: row;
     justify-content: center;
   }
-  .employee-card.vacant {
-    background-color: #f0f0f0;
-    border: 2px dashed #ccc;
-  }
   
-  .vacant-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-  }
-  
-  .vacant-text {
-    font-weight: bold;
-    color: #888;
-  }
-.employee-cell {
+  /* Employee Cell and Card Styles */
+  .employee-cell {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 0 10px;
-
+  
     .employee-card {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 10px;
-        cursor: pointer;
-        transition: box-shadow 0.3s, background 0.3s;
-        min-width: 160px;
-        max-width: 210px;
-        height: 200px;
-        border-radius: 10px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        text-align: center;
-        margin: 5px;
+      position: relative;
+      width: 450px;
+      height: 335px;
+      background-image: url("../assets/card-background.jpg"); /* Adjust path if necessary */
+      background-size: cover;
+      background-position: center;
+      border-radius: 8px;
+      overflow: hidden; /* Ensure child elements don't overflow */
+      cursor: pointer;
+      margin: 10px;
+      transition: box-shadow 0.3s, background 0.3s;
+      box-sizing: border-box;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  
+      &:hover {
+        box-shadow: 0 0 0 1px #888, 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+    }
+  
+    /* Card Content */
+    .employee-card .card-content {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      direction: rtl;
+      text-align: right;
+    }
+  
+    /* Employee Photo */
+    .employee-photo {
+      position: absolute;
+      top: 18px; /* Adjust as needed */
+      right: 25px; /* Adjust as needed */
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .employee-name-label {
+        position: absolute;
+        top: 180px;
+        right: 320px;
+        font-size: 16px;
+        color: #555;
+        direction: rtl;
+    }
+  
+    /* Employee Name */
+    .employee-name {
+      position: absolute;
+      top: 205px; /* Adjust as needed */
+      right: 50px; /* Adjust as needed */
+      font-size: 16px;
+      color: #000;
+      direction: rtl;
+    }
+  
+    /* Employee Designation */
+    .employee-designation {
+      position: absolute;
+      top: 70px; /* Adjust as needed */
+      left: 130px; /* Adjust as needed */
+      font-size: 16px;
+      color: #000;
+      font-weight: bold;
+      direction: rtl;
+      text-align: right;
+    }
+
     
-        &:hover {
-            box-shadow: 0 0 0 1px #888, 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
+  
+    /* Vacant Position Styles */
+    .employee-card.vacant {
+      background-image: url("../assets/card-background.jpg"); /* Use a different image if desired */
+      background-size: cover;
+      background-position: center;
+      font-family: 'Arial', 'Helvetica', sans-serif;
     }
-
+  
+    .vacant-card {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+  
+    .vacant-text {
+      position: absolute;
+      top: 50%; /* Center vertically */
+      left: 50%; /* Center horizontally */
+      transform: translate(-50%, -50%);
+      font-size: 18px;
+      font-weight: bold;
+      color: #000; /* Adjust for readability */
+      text-align: center;
+    }
+  
+    .vacant-designation {
+      position: absolute;
+      bottom: 10px; /* Adjust as needed */
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 14px;
+      color: #555;
+      text-align: center;
+    }
+  
+    /* Subordinates Container within Employee Cell */
     .subordinates {
-        display: flex;
-        flex-direction: row;
-        margin-top: 20px;
-        // align-items: center;
-        // width: 100%;
+      display: flex;
+      flex-direction: row;
+      margin-top: 20px;
     }
-}
-
-// .level:nth-child(1) .employee-card {
-//     border-color: #ff5733;
-// }
-
-// .level:nth-child(2) .employee-card {
-//     border-color: #33ff57;
-// }
-// .level:nth-child(3) .employee-card {
-//     border-color: #3357ff;
-// }
-.employee-card.level-0 {
-    border: 2px solid #FF5733;
-    /* ... other styles ... */
-}
-
-.employee-card.level-1 {
-    border: 2px solid #33FF57;
-    /* ... other styles ... */
-}
-.employee-card.level-2 {
-    border: 2px solid #3357FF; /* Color for Subordinates of Level 1 */
-}
-
-.employee-card.level-3 {
-    border: 2px solid #FF33A1; /* Color for Subordinates of Level 2 */
-}
-
-
-.employee-card img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    margin-bottom: 10px;
-}
-
-
-
-
-
-/* General button styling */
-
-.zoom-control-container {
+  }
+  
+  /* Zoom Control Styles */
+  .zoom-control-container {
     position: fixed;
     bottom: 10px;
     right: 10px;
-    background-color: rgba(255, 255, 255, 0.7); /* semi-transparent white */
+    background-color: rgba(255, 255, 255, 0.7);
     padding: 8px;
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-
-.zoom-control-btn {
+  }
+  
+  .zoom-control-btn {
     border: none;
     background-color: #f3f3f3;
     color: #333;
     padding: 6px 12px;
-    text-align: center;
-    text-decoration: none;
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
-    transition-duration: 0.4s;
     cursor: pointer;
-    border-radius: 50%; /* Making the buttons circular */
+    border-radius: 50%;
     width: 36px;
     height: 36px;
-    line-height: 24px; /* Centering the '+' '-' and 'fit' text vertically */
-}
-
-/* Hover state styling */
-.zoom-control-btn:hover {
-    background-color: #ddd; /* A lighter shade on hover */
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow on hover */
-}
-
-/* Specific button stylings */
-.zoom-in-btn {
-    background-color: #00A600; /* Green for zoom in */
-}
-
-.zoom-out-btn {
-    background-color: #E81123; /* Red for zoom out */
-}
-
-.zoom-fit-btn {
-    background-color: #F2C811; /* Yellow for fit */
+    line-height: 24px;
+    text-align: center;
+    transition-duration: 0.4s;
+  }
+  
+  .zoom-control-btn:hover {
+    background-color: #ddd;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .zoom-in-btn {
+    background-color: #00A600;
+  }
+  
+  .zoom-out-btn {
+    background-color: #E81123;
+  }
+  
+  .zoom-fit-btn {
+    background-color: #F2C811;
     align-content: center;
-}
-
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 600px) {
+    .employee-card {
+      width: 150px;
+      height: 100px;
+    }
+    /* Adjust positions and sizes accordingly */
+  }

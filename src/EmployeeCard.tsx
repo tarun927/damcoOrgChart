@@ -17,17 +17,26 @@ const EmployeeCard: React.FC<EmployeeCardProps> = React.memo(
         className={`employee-card ${isVacant ? "vacant" : ""}`}
         onClick={toggleSubordinates}
       >
-        {isVacant ? (
-          <div className="vacant-card">
-            <div className="vacant-text">Vacant Position</div>
-            <div>{employee.designation || "No Designation"}</div>
+        {!isVacant ? (
+          <div className="card-content">
+            <img
+              className="employee-photo"
+              src={employee.imageBase64}
+              alt={employee.name}
+            />
+            <div className="employee-name-label">الاسم:</div>
+            <div className="employee-name">{employee.designation}</div>
+            <div className="employee-designation">
+              {employee.designation || "No Designation"}
+            </div>
           </div>
         ) : (
-          <>
-            <img src={employee.imageBase64} alt={employee.name} />
-            <div>{employee.name}</div>
-            <div>{employee.designation || "No Designation"}</div>
-          </>
+          <div className="vacant-card">
+            <div className="vacant-text">منصب شاغر</div>
+            <div className="vacant-designation">
+              {employee.designation || "No Designation"}
+            </div>
+          </div>
         )}
       </div>
     );
