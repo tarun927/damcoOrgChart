@@ -5,8 +5,8 @@ import VisualConstructorOptions = powerbiVisualsApi.extensibility.visual.VisualC
 import DialogConstructorOptions = powerbiVisualsApi.extensibility.visual.DialogConstructorOptions;
 var powerbiKey: any = "powerbi";
 var powerbi: any = window[powerbiKey];
-var damcoOrgChartBC9AA1AC56E8468AA3D896339DF88E60: IVisualPlugin = {
-    name: 'damcoOrgChartBC9AA1AC56E8468AA3D896339DF88E60',
+var damcoOrgChartBC9AA1AC56E8468AA3D896339DF88E60_DEBUG: IVisualPlugin = {
+    name: 'damcoOrgChartBC9AA1AC56E8468AA3D896339DF88E60_DEBUG',
     displayName: 'damcoOrgChart',
     class: 'Visual',
     apiVersion: '5.3.0',
@@ -27,6 +27,6 @@ var damcoOrgChartBC9AA1AC56E8468AA3D896339DF88E60: IVisualPlugin = {
 if (typeof powerbi !== "undefined") {
     powerbi.visuals = powerbi.visuals || {};
     powerbi.visuals.plugins = powerbi.visuals.plugins || {};
-    powerbi.visuals.plugins["damcoOrgChartBC9AA1AC56E8468AA3D896339DF88E60"] = damcoOrgChartBC9AA1AC56E8468AA3D896339DF88E60;
+    powerbi.visuals.plugins["damcoOrgChartBC9AA1AC56E8468AA3D896339DF88E60_DEBUG"] = damcoOrgChartBC9AA1AC56E8468AA3D896339DF88E60_DEBUG;
 }
-export default damcoOrgChartBC9AA1AC56E8468AA3D896339DF88E60;
+export default damcoOrgChartBC9AA1AC56E8468AA3D896339DF88E60_DEBUG;

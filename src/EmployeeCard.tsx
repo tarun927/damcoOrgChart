@@ -22,10 +22,9 @@ const EmployeeCard: React.FC<EmployeeCardProps> = React.memo(
             <img
               className="employee-photo"
               src={employee.imageBase64}
-              alt={employee.name}
             />
             <div className="employee-name-label">الاسم:</div>
-            <div className="employee-name">{employee.designation}</div>
+            <div className="employee-name">{employee.name}</div>
             <div className="employee-designation">
               {employee.designation || "No Designation"}
             </div>
