@@ -96,13 +96,32 @@ const OrgChart: React.FC<OrgChartProps> = ({ data }) => {
       const hasSubordinates =
         employee.subordinates && employee.subordinates.length > 0;
       const isVisible = visibleSubordinates[employee.index] !== false; // Default to true to show subordinates initially
-  
+ 
       return (
         <div className="employee-cell" key={employee.index}>
+          {!!employee.managerIndex && <div className="arrow-container">
+            <div className="arrow-line"></div>
+            <div className="arrow-head"></div>
+          </div>}
+ 
           <EmployeeCard
             employee={employee}
             toggleSubordinates={() => toggleSubordinates(employee.index)}
           />
+ 
+          {/* Render linking lines */}
+          {hasSubordinates && (
+            <div className="link-line-container">
+              {isVisible && (
+                <>
+                  <div className="link-line-vertical"></div>
+                  <div className="link-line-horizontal horiz-above"></div>
+                  <div className="link-line-horizontal"></div>
+                </>
+              )}
+            </div>
+          )}
+ 
           {hasSubordinates && (
             <div
               className="subordinates"

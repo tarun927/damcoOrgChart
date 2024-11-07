@@ -210,3 +210,72 @@
     }
     /* Adjust positions and sizes accordingly */
   }
+ 
+// 1.0.0.1
+ .link-line-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -111;
+  }
+ 
+  .link-line-vertical-top {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 15px solid #333; /* Color of the arrow */
+  }
+ 
+  .link-line-vertical {
+    width: 2px;
+    height: 17px;
+    background-color: #000;
+    position: absolute;
+    top: 0;
+    z-index: -111;
+  }
+ 
+  .link-line-horizontal {
+    height: 2px;
+    width: 88%;
+    background-color: #000;
+    position: absolute;
+    top: 110px;
+    z-index: -111;
+  }
+ 
+  .horiz-above{
+    top: 17px;
+  }
+ 
+  .link-line-horizontal-above {
+    height: 2px;
+    background-color: #000; /* Adjust line color as needed */
+  }
+
+  .arrow-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+ 
+  .arrow-line {
+    width: 2px;
+    height: 10px; /* Adjust height as needed */
+    background-color: #333; /* Color of the line */
+  }
+ 
+  .arrow-head {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 15px solid #333; /* Color of the arrow */
+  }
+
+  
+ 
+ 
