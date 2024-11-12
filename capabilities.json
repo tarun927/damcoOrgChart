@@ -11,6 +11,31 @@
       "displayName": "Name"
     },
     {
+      "name": "grade",
+      "kind": "Grouping",
+      "displayName": "Grade"
+    },
+    {
+      "name": "employeeNumber",
+      "kind": "Grouping",
+      "displayName": "employeeNumber"
+    },
+    {
+      "name": "experience",
+      "kind": "Grouping",
+      "displayName": "experience"
+    },
+    {
+      "name": "university",
+      "kind": "Grouping",
+      "displayName": "university"
+    },
+    {
+      "name": "qualification",
+      "kind": "Grouping",
+      "displayName": "qualification"
+    },
+    {
       "name": "designation",
       "kind": "Grouping",
       "displayName": "Designation"

@@ -1,8 +1,8 @@
 import React from "react";
-import { Employee } from "./types";
+import { Designation } from "./types";
 import "../style/visual.less";
 interface OrgChartProps {
-    data: Employee[];
+    data: Designation[];
 }
 declare const OrgChart: React.FC<OrgChartProps>;
 export default OrgChart;

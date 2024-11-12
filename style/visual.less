@@ -17,6 +17,16 @@
     flex-direction: column;
     align-items: center;
   }
+
+  .orgChart {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .org-chart-container {
+    position: relative;
+    transform-origin: center top;
+  }
   
   .level {
     display: flex;
@@ -33,12 +43,35 @@
   }
   
   /* Employee Cell and Card Styles */
-  .employee-cell {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 10px;
+  // .employee-cell {
+  //   display: flex;
+  //   flex-direction: column;
+  //   align-items: center;
+  //   margin: 0 10px;
   
+  .designation-card {
+    // background: #00A600;
+    position: relative;
+    width: 450px;
+    height: 335px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    overflow: hidden; /* Ensure child elements don't overflow */
+    cursor: pointer;
+    margin: 10px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  /* Card Content */
+  .designation-card .card-content {
+    position: absolute;
+    top: 75px;
+    height: 50%;
+    direction: rtl;
+    text-align: right;
+  }
     .employee-card {
       position: relative;
       width: 450px;
@@ -154,7 +187,7 @@
       flex-direction: row;
       margin-top: 20px;
     }
-  }
+  // }
   
   /* Zoom Control Styles */
   .zoom-control-container {
@@ -210,3 +243,131 @@
     }
     /* Adjust positions and sizes accordingly */
   }
+ 
+// 1.0.0.1
+ .link-line-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -111;
+  }
+ 
+  .link-line-vertical-top {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 15px solid #333; /* Color of the arrow */
+  }
+ 
+  .link-line-vertical {
+    width: 2px;
+    height: 17px;
+    background-color: #000;
+    position: absolute;
+    top: 0;
+    z-index: -111;
+  }
+ 
+  .link-line-horizontal {
+    height: 2px;
+    width: 88%;
+    background-color: #000;
+    position: absolute;
+    top: 110px;
+    z-index: -111;
+  }
+ 
+  .horiz-above{
+    top: 17px;
+  }
+ 
+  .link-line-horizontal-above {
+    height: 2px;
+    background-color: #000; /* Adjust line color as needed */
+  }
+
+  .arrow-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+ 
+  .arrow-line {
+    width: 2px;
+    height: 10px; /* Adjust height as needed */
+    background-color: #333; /* Color of the line */
+  }
+ 
+  .arrow-head {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 15px solid #333; /* Color of the arrow */
+  }
+
+  .emp-info-container{
+    position: absolute;
+    top: 163px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .item {
+    font-size: 11px;
+    flex: 1 1 calc(33.33% - 20px);
+    padding: 20px;
+    /* background-color: #f0f0f0; */
+    text-align: center;
+    box-sizing: border-box;
+  }
+ 
+
+  // designationChart
+.node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  margin: 10px 0;
+  font-family: Arial, sans-serif;
+  background: white;
+}
+
+.management {
+  border: 2px solid #3d3527;
+  font-weight: bold;
+  width: 80%;
+  left: 5%;
+}
+
+.department {
+  border: 2px solid #c1a267;
+  font-weight: bold;
+  border-radius: 35px;
+  width: 80%;
+  left: 5%;
+}
+
+.unit {
+  border: 2px solid #d5c4a1;
+  width: 70%;
+  left: 10%;
+  font-weight: normal;
+  border-radius: 110px;
+}
+
+.node-title {
+  font-size: 30px;
+}
+
+.node-subtitle {
+  font-size: 20px;
+  margin: 16px;
+  color: #6e6e6e;
+}

@@ -1,11 +1,11 @@
 import React, { useRef, useState } from "react";
 import Tree from "react-d3-tree";
-import EmployeeCard from "./EmployeeCard";
-import { Employee } from "./types";
+import DesignationCard from "./DesignationCard";
+import { Designation } from "./types";
 import "../style/visual.less";
 
 interface OrgChartProps {
-  data: Employee[];
+  data: Designation[];
 }
 
 interface TreeNode {
@@ -13,12 +13,6 @@ interface TreeNode {
   managerIndex: number;
   name: any;
   position: string;
-  imageBase64: string;
-  grade: string;
-  employeeNumber: number;
-  experience: any;
-  university: string;
-  qualification: string;
   children?: TreeNode[];
   expanded?: boolean;
 }
@@ -46,9 +40,9 @@ const OrgChart: React.FC<OrgChartProps> = ({ data }) => {
   const calculateActualTreeDimensions = () => {
     setZoomLevel(100)
     let x = setTimeout(() => {
-      const employeeCards = document.querySelectorAll('.employee-card');
+      const designationCards = document.querySelectorAll('.designation-card');
       
-      if (employeeCards.length === 0) {
+      if (designationCards.length === 0) {
         console.log('No cards');
         return;
       }
@@ -58,7 +52,7 @@ const OrgChart: React.FC<OrgChartProps> = ({ data }) => {
       let topmost = Infinity;
       let bottommost = -Infinity;
   
-      employeeCards.forEach(card => {
+      designationCards.forEach(card => {
         const rect = card.getBoundingClientRect();
         
         leftmost = Math.min(leftmost, rect.left);
@@ -164,22 +158,17 @@ const OrgChart: React.FC<OrgChartProps> = ({ data }) => {
   const [zoom, setZoom] = useState(1);
 
   // Build Tree Data
-  const buildTreeData = (data: Employee[], parent: number | null = null): TreeNode[] => {
+  const buildTreeData = (data: Designation[], parent: number | null = null, level: number = 0): TreeNode[] => {
     return data
       .filter(emp => emp.managerIndex === parent)
       .map(emp => ({
         name: emp.name || "Vacant Position",
         position: emp.designation || "No Designation",
-        imageBase64: emp.imageBase64,
         index: emp.index,
         managerIndex : emp.managerIndex,
-        grade: emp.grade,
-        experience: emp.experience,
-        employeeNumber: emp.employeeNumber,
-        qualification: emp.qualification,
-        university: emp.university,
         expanded: true,
-        children: buildTreeData(data, emp.index),
+        level: level,
+        children: buildTreeData(data, emp.index,level+1),
       }));
   };
 
@@ -220,8 +209,8 @@ const OrgChart: React.FC<OrgChartProps> = ({ data }) => {
 
   const renderNode = ({ nodeDatum }: any) => (
     <foreignObject width="450" height="335" x="-225" y="-100">
-      <EmployeeCard
-        employee={{
+      <DesignationCard
+        designation={{
           index: nodeDatum.index,
           managerIndex: nodeDatum.managerIndex,
           name: nodeDatum.name,
@@ -232,6 +221,7 @@ const OrgChart: React.FC<OrgChartProps> = ({ data }) => {
           qualification: nodeDatum.qualification,
           university: nodeDatum.university,
           imageBase64: nodeDatum.imageBase64,
+          level: nodeDatum.level
         }}
         toggleSubordinates={() => toggleNodeExpansion(nodeDatum.index)}
       />

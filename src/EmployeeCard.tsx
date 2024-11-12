@@ -19,15 +19,37 @@ const EmployeeCard: React.FC<EmployeeCardProps> = React.memo(
       >
         {!isVacant ? (
           <div className="card-content">
-            <img
-              className="employee-photo"
-              src={employee.imageBase64}
-            />
-            <div className="employee-name-label">الاسم:</div>
-            <div className="employee-name">{employee.name}</div>
-            <div className="employee-designation">
-              {employee.designation || "No Designation"}
+            <img className="employee-photo" src={employee.imageBase64} />
+            <div className="employee-designation">{employee.designation}</div>
+            <div className="emp-info-container">
+              <div className="item">
+                <div className="">الاسم:</div>
+                <div className="">{employee.name}</div>
+              </div>
+              <div className="item">
+                <div className="">Grade:</div>
+                <div className="">{employee.grade}</div>
+              </div>
+              <div className="item">
+                <div className="">Employee Number:</div>
+                <div className="">{employee.employeeNumber}</div>
+              </div>
+              <div className="item">
+                <div className="employee-exp-label">Experience:</div>
+                <div className="employee-exp">{employee.experience}</div>
+              </div>
+              <div className="item">
+                 <div className="employee-college-label"> University/College:</div>
+                 <div className="employee-college">{employee.university}</div>
+              </div>
+              <div className="item">
+                <div className="employee-quali-label">Qualification:</div>
+                <div className="employee-quali">{employee.qualification}</div>
+              </div>
             </div>
+            {/* <div className="employee-designation">
+              {employee.designation || "No Designation"}
+            </div> */}
           </div>
         ) : (
           <div className="vacant-card">

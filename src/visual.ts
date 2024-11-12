@@ -11,6 +11,7 @@ import { createRoot, Root } from "react-dom/client"; // Updated import
 import OrgChart from "./OrgChart";
 import { Employee } from "./types"; // Correct import
 import ErrorBoundary from "./ErrorBoundary";
+import DesignationChart from "./DesignationChart";
 
 export class Visual implements IVisual {
   private target: HTMLElement;
@@ -39,6 +40,7 @@ export class Visual implements IVisual {
     const designationIndex = columns.findIndex(col => col.roles["designation"]);
     const imageIndex = columns.findIndex(col => col.roles["imageBase64"]);
     const managerIndexIndex = columns.findIndex(col => col.roles["managerIndex"]);
+    
 
     if (indexIndex === -1 || nameIndex === -1 || designationIndex === -1 || imageIndex === -1) {
       console.error("Required columns (name, designation, imageBase64) are missing.");
@@ -71,6 +73,11 @@ export class Visual implements IVisual {
         designation: designationValue,
         imageBase64: imageValue,
         managerIndex: managerIndexValue, // Correct property name
+        grade: nameValue,
+        employeeNumber: managerIndexValue,
+        experience: indexValue,
+        university: designationValue,
+        qualification: nameValue
       };
     }).filter(emp => emp.index !== undefined)
 
@@ -82,7 +89,7 @@ export class Visual implements IVisual {
       React.createElement(
         ErrorBoundary,
         null,
-        React.createElement(OrgChart, { data: data })
+        React.createElement(DesignationChart, { data: data })
       )
     );
   }
