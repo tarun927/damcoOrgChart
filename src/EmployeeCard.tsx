@@ -11,7 +11,7 @@ interface EmployeeCardProps {
 const EmployeeCard: React.FC<EmployeeCardProps> = React.memo(
   ({ employee, toggleSubordinates }) => {
     const isVacant = !employee.name || employee.name === "Vacant Position";
-
+    const [empName, setEmpName] = React.useState(employee.name);
     return (
       <div
         className={`employee-card ${isVacant ? "vacant" : ""}`}
@@ -19,15 +19,17 @@ const EmployeeCard: React.FC<EmployeeCardProps> = React.memo(
       >
         {!isVacant ? (
           <div className="card-content">
-            <img className="employee-photo" src={employee.imageBase64} />
+            <img className="employee-photo" src={btoa(String.fromCharCode(...new Uint8Array(employee.imageBase64)))} />
             <div className="employee-designation">{employee.designation}</div>
             <div className="emp-info-container">
               <div className="item">
                 <div className="">الاسم:</div>
-                <div className="">{employee.name}</div>
+                <div className="">
+                  <input className="emp-name" type="text" value={empName} onChange={(e)=>setEmpName(e.target.value)}/>
+                </div>
               </div>
               <div className="item">
-                <div className="">Grade:</div>
+                <div className="">:Grade</div>
                 <div className="">{employee.grade}</div>
               </div>
               <div className="item">

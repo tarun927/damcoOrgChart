@@ -13,7 +13,7 @@ interface TreeNode {
   managerIndex: number;
   name: any;
   position: string;
-  imageBase64: string;
+  imageBase64: any;
   grade: string;
   employeeNumber: number;
   experience: any;
@@ -219,7 +219,7 @@ const OrgChart: React.FC<OrgChartProps> = ({ data }) => {
   };
 
   const renderNode = ({ nodeDatum }: any) => (
-    <foreignObject width="450" height="335" x="-225" y="-100">
+    <foreignObject width="470" height="355" x="-225" y="-100">
       <EmployeeCard
         employee={{
           index: nodeDatum.index,

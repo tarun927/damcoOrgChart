@@ -2,7 +2,7 @@ export interface Employee {
     index: number;
     name: string;
     designation: string;
-    imageBase64: string;
+    imageBase64: any;
     managerIndex?: number;
     level?: number;
     grade: string;
@@ -15,7 +15,7 @@ export interface Designation {
     index: number;
     name: string;
     designation: string;
-    imageBase64: string;
+    imageBase64: any;
     managerIndex?: number;
     level?: number;
     grade: string;

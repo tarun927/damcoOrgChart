@@ -89,7 +89,7 @@ export class Visual implements IVisual {
       React.createElement(
         ErrorBoundary,
         null,
-        React.createElement(DesignationChart, { data: data })
+        React.createElement(OrgChart, { data: data })
       )
     );
   }

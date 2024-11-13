@@ -121,15 +121,15 @@
 /* Employee Designation */
 .employee-designation {
   position: absolute;
-  top: 70px;
-  /* Adjust as needed */
-  left: 130px;
-  /* Adjust as needed */
+  top: 52px;
+  left: 85px;
   font-size: 16px;
   color: #000;
   font-weight: bold;
   direction: rtl;
   text-align: right;
+  width: 186px;
+  word-wrap: break-word;
 }
 /* Vacant Position Styles */
 .employee-card.vacant {
@@ -307,20 +307,23 @@
   background: white;
 }
 .management {
-  border: 2px solid #3d3527;
+  color: #4e441f;
+  border: 5px solid #4e441f;
   font-weight: bold;
   width: 80%;
   left: 5%;
 }
 .department {
-  border: 2px solid #c1a267;
+  color: #8E7526;
+  border: 5px solid #8E7526;
   font-weight: bold;
   border-radius: 35px;
   width: 80%;
   left: 5%;
 }
 .unit {
-  border: 2px solid #d5c4a1;
+  color: #938d75;
+  border: 5px solid #cac0a5;
   width: 70%;
   left: 10%;
   font-weight: normal;
@@ -332,6 +335,14 @@
 .node-subtitle {
   font-size: 20px;
   margin: 16px;
-  color: #6e6e6e;
+  color: #272626;
+}
+.emp-name {
+  border: none;
+  padding: 0;
+  margin-left: -85px;
+  font-size: 11px;
 }
 
+
+/*# sourceMappingURL=https://localhost:8080/assets/visual.css.map*/

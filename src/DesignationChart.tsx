@@ -279,7 +279,7 @@ const OrgChart: React.FC<OrgChartProps> = ({ data }) => {
             translate={treeTranslate}
             nodeSize={{ x: 650, y: 650 }} 
             renderCustomNodeElement={renderNode}
-            separation={{ siblings: 1.1, nonSiblings: 1.5 }} 
+            separation={{ siblings: 1, nonSiblings: 1.1 }} 
             pathFunc="step"
             collapsible={false}
             zoom={zoomLevel}
