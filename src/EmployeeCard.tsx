@@ -34,8 +34,8 @@ const EmployeeCard: React.FC<EmployeeCardProps> = React.memo(
           <div className="card-content">
             <img
               className="employee-photo"
-              // src={binaryToBase64(employee.imageBase64)}
-              src={employee.imageBase64}
+              src={binaryToBase64(employee.imageBase64)}
+              // src={employee.imageBase64}
             />
             <div className="employee-designation">{employee.designation}</div>
             <div className="emp-info-container">
