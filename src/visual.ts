@@ -39,6 +39,7 @@ export class Visual implements IVisual {
     const nameIndex = columns.findIndex(col => col.roles["name"]);
     const designationIndex = columns.findIndex(col => col.roles["designation"]);
     const imageIndex = columns.findIndex(col => col.roles["imageBase64"]);
+    const gradeIndex = columns.findIndex(col=> col.roles['grade']);
     const managerIndexIndex = columns.findIndex(col => col.roles["managerIndex"]);
     
 
@@ -61,6 +62,7 @@ export class Visual implements IVisual {
       const indexValueRaw = indexIndex !== -1 ? row[indexIndex] : undefined;
       const indexValue = parseInt(indexValueRaw as string);
       const nameValue = row[nameIndex] as string;
+      const grade = row[gradeIndex] as number 
       const designationValue = row[designationIndex] as string;
       const imageValue = row[imageIndex] as string;
       const managerIndexValueRaw = managerIndexIndex !== -1 ? row[managerIndexIndex] : undefined;
@@ -73,7 +75,7 @@ export class Visual implements IVisual {
         designation: designationValue,
         imageBase64: imageValue,
         managerIndex: managerIndexValue, // Correct property name
-        grade: nameValue,
+        grade: grade,
         employeeNumber: managerIndexValue,
         experience: indexValue,
         university: designationValue,
