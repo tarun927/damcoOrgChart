@@ -74,8 +74,10 @@
   }
     .employee-card {
       position: relative;
-      width: 450px;
-      height: 335px;
+      min-width: 450px;
+      min-height: 335px;
+      width: 100%;
+      height: 100%;
       background-image: url("../assets/card-background.jpg"); /* Adjust path if necessary */
       background-size: cover;
       background-position: center;
@@ -379,6 +381,7 @@
 
 .emp-name{
   border: none;
+  outline: none;
   padding: 0;
   margin-left: -85px;
   font-size: 11px;

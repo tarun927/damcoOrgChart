@@ -7,7 +7,7 @@ export interface Employee {
     imageBase64: any;
     managerIndex?: number;
     level?: number;
-    grade: string;
+    grade: number;
     employeeNumber: number;
     experience: any;
     university: string;
@@ -21,7 +21,7 @@ export interface Employee {
     imageBase64: any;
     managerIndex?: number;
     level?: number;
-    grade: string;
+    grade: number;
     employeeNumber: number;
     experience: any;
     university: string;

@@ -303,7 +303,7 @@ const OrgChart: React.FC<OrgChartProps> = ({ data }) => {
       >
         Fit to Screen
       </button>
-      <button
+      {/* <button
         className="zoom-control-btn"
         onClick={() => setZoomLevel(prev => Math.min(prev + 0.1, 2))}
       >
@@ -317,7 +317,7 @@ const OrgChart: React.FC<OrgChartProps> = ({ data }) => {
         })}
       >
         -
-      </button>
+      </button> */}
     </div>
   </div>
   );
